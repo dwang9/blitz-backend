@@ -32,7 +32,6 @@ func (c *handler) GetSummonerInfo(w http.ResponseWriter, r *http.Request) {
 		Rank:         playerData.Level,
 		MasteryScore: summonerInfo.SummonerLevel,
 	}
-
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resp)

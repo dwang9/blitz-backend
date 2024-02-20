@@ -23,7 +23,7 @@ type CacheConfig struct {
 }
 
 type RiotConfig struct {
-	ApiKey string `env:"API_KEY" envDefault:"RGAPI-e686fc9e-d077-4705-b79f-1ba23bfbcbe9"`
+	ApiKey string `env:"API_KEY" envDefault:"RGAPI-e4a6b1cf-8682-4a3a-bb92-80077bbb5e52"`
 }
 
 type HTTPServerConfig struct {

@@ -19,6 +19,7 @@ import (
 	"github.com/derek-test/blitz-backend/src/internal/server"
 	matchesService "github.com/derek-test/blitz-backend/src/internal/service/matches"
 	summonerService "github.com/derek-test/blitz-backend/src/internal/service/summoner"
+	"github.com/gorilla/handlers"
 )
 
 func main() {
@@ -43,8 +44,11 @@ func main() {
 	matchesServiceHandler := matchesV1.NewMatchHandler(matchesService)
 
 	router := server.NewHttpServer(summonerServiceHandler, matchesServiceHandler)
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
-	if err := http.ListenAndServe(":8080", router); err != nil && err != http.ErrServerClosed {
+	if err := http.ListenAndServe(":8080", handlers.CORS(originsOk, headersOk, methodsOk)(router)); err != nil && err != http.ErrServerClosed {
 		log.Fatal().Err(err).Msg("unable to start http server")
 	}
 
