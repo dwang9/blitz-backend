@@ -21,7 +21,7 @@ func serializEntityToGetMatchInfoMatches(matches []*entity.PlayerMatch) []*getMa
 func serializEntityToGetMatchInfoMatch(m *entity.PlayerMatch) *getMatchInfoMatch {
     return &getMatchInfoMatch{
         MatchDate:          m.MatchDate,
-        MatchDateTimestamp: m.MatchDate.Unix(),
+        MatchDateTimestamp: m.MatchDate.UTC().Unix(),
         GameType:           m.GameType,
         ChampionPlayed:     m.ChampionPlayed,
         DidWin:             m.DidWin,
