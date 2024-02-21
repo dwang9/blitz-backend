@@ -37,6 +37,9 @@ func (c *handler) GetMatchHistory(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+
+	// TO EXPLAIN this needs to be reworked to use queue ids
+	// The current implementation will not give the correct results
 	matchTypeParam := ""
 	if r.URL.Query().Has("matchType") {
 		matchTypeParam = r.URL.Query().Get("matchType")
